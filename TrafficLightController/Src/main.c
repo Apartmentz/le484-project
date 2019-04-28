@@ -23,7 +23,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "stdio.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -49,7 +49,6 @@
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
-static void MX_GPIO_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -58,7 +57,9 @@ static void MX_GPIO_Init(void);
 /* USER CODE BEGIN 0 */
 
 /* USER CODE END 0 */
-
+int fputc(int ch,FILE *f){
+return ITM_SendChar(ch);
+}
 /**
   * @brief  The application entry point.
   * @retval int
@@ -86,7 +87,6 @@ int main(void)
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
-  MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
@@ -96,7 +96,8 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-
+		printf("Hello, World\n");
+		HAL_Delay(1000);
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -138,19 +139,6 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
-}
-
-/**
-  * @brief GPIO Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_GPIO_Init(void)
-{
-
-  /* GPIO Ports Clock Enable */
-  __HAL_RCC_GPIOA_CLK_ENABLE();
-
 }
 
 /* USER CODE BEGIN 4 */
